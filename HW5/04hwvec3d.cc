@@ -8,17 +8,17 @@ private:
     double x, y, z;
 public:
     Vec3d(double x = 0, double y = 0, double z = 0) : x(x), y(y), z(z) {
-    m = new double [3];
-    m[0] = x; m[1] = y; m[2] = z;
+        m = new double [3];
+        m[0] = x; m[1] = y; m[2] = z;
     }
 
-    // void print(){
-    //     cout << '{';
-    //     for (int i = 0; i < 2; i++){
-    //         cout << m[i] << ", ";
-    //     }
-    //     cout << m[2] << '}' << endl;
-    // }
+    double dot(Vec3d b){
+        double dproduct = 0;
+        for (int i = 0; i < 3; i++){
+        dproduct += this->m[i] * b.m[i];
+        }
+        return dproduct;
+    }
 
     friend Vec3d operator *(const Vec3d& a, int b);
     friend Vec3d operator *(int b, const Vec3d& a);
@@ -53,7 +53,7 @@ Vec3d operator +(const Vec3d& a, const Vec3d& b){
     }
     return sum;
 }
-
+// Vector addition: vector - vector
 Vec3d operator -(const Vec3d& a, const Vec3d& b){
     Vec3d diff;
     
@@ -102,10 +102,12 @@ ostream& operator <<(ostream& s, const Vec3d& a){
         Vec3d h = a - b; // vector subtraction
         cout << a << endl;
         cout << b << endl;
-        cout << h << endl;
-        #if 0
-        double z1 = dot(a,b); // function
+        // cout << h << endl;
+        
+        //double z1 = dot(a,b); // function
         double z2 = a.dot(b); // method
+        cout << z2 << endl;
+        #if 0
         // add static later
         double w1 = a.dist(b);
         double w2 = dist(a,b);
